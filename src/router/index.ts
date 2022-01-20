@@ -19,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/transition',
     name: 'Transition',
     component: () => import(/* webpackChunkName: "transition" */'../views/transition/TransitionDemo.vue')
+  },
+  {
+    path: '/scroll',
+    name: 'Scroll',
+    component: () => import(/* webpackChunkName: "transition" */'../views/scroll/scrollDemo.vue')
   }
 ]
 

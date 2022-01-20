@@ -1,0 +1,9 @@
+.demo-container {
+    width: 80%;
+    display: flex;
+    padding: 16px;
+    border-radius: 10px;
+    margin: 0 auto 16px;
+    background: #b8d7c8;
+    font-size: 16px;
+}
