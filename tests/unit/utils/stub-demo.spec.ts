@@ -1,7 +1,7 @@
-import { getMobileLink, useTemplate } from '@/unit-test-demo/utils/stub-demo'
+import { getMobileLink, useTemplate, useTemplateByDevice } from '@/unit-test-demo/utils/stub-demo'
 import * as device from '@/unit-test-demo/utils/device'
 import sinon from 'sinon'
-import { isLandscape } from '@/unit-test-demo/utils/device'
+import { isLandscape, isMobileDevice } from '@/unit-test-demo/utils/device'
 // getMobileLink调用了isMobileDevice来判断是否是mobile,如果需要测试两个逻辑分支，需要stub两种场景的返回值
 // stub 一个文件里的某一个变量 sinon stub jest目前不改变业务代码的前提下没有找到解决方案
 
@@ -41,5 +41,27 @@ describe('stub method useTemplate use jest', function () {
   it('should return templateB when is priorat', function () {
     jest.spyOn(device, 'isLandscape').mockReturnValue(false)
     expect(useTemplate()).toEqual('templateB')
+  })
+})
+
+// stub 整个文件，得一个一个的stub,jest同理，就不一一演示了
+describe('stub all file use sinon', function () {
+  afterEach(() => {
+    (device.isLandscape as any).restore()
+  })
+  it('should return templateMobileLandscape', function () {
+    sinon.stub(device, 'isMobileDevice').value(true)
+    sinon.stub(device, 'isLandscape').returns(true)
+    expect(useTemplateByDevice()).toEqual('templateMobileLandscape')
+  })
+  it('should return templateMobile', function () {
+    sinon.stub(device, 'isMobileDevice').value(true)
+    sinon.stub(device, 'isLandscape').returns(false)
+    expect(useTemplateByDevice()).toEqual('templateMobile')
+  })
+  it('should return templatePc', function () {
+    sinon.stub(device, 'isMobileDevice').value(false)
+    sinon.stub(device, 'isLandscape').returns(false)
+    expect(useTemplateByDevice()).toEqual('templatePc')
   })
 })

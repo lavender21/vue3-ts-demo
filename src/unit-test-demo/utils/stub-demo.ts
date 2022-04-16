@@ -15,3 +15,15 @@ export const useTemplate = () => {
     return 'templateB'
   }
 }
+
+export const useTemplateByDevice = () => {
+  if (isLandscape() && isMobileDevice) {
+    return 'templateMobileLandscape'
+  }
+  if (!isLandscape() && isMobileDevice) {
+    return 'templateMobile'
+  }
+  if (!isMobileDevice) {
+    return 'templatePc'
+  }
+}
