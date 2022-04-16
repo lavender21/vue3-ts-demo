@@ -131,9 +131,12 @@
 <script lang="ts" setup>
 import { userStore } from '@/store/custom/userStore'
 import { messageStore } from '@/store/custom/messageStore'
+import { withDefaults, defineProps } from 'vue'
 
 const user = userStore.state
 const message = messageStore.state
+
+withDefaults(defineProps<{name: string}>(), { name: 'test' })
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

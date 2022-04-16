@@ -23,7 +23,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/scroll',
     name: 'Scroll',
-    component: () => import(/* webpackChunkName: "transition" */'../views/scroll/scrollDemo.vue')
+    component: () => import(/* webpackChunkName: "scroll" */'../views/scroll/scrollDemo.vue')
+  },
+  {
+    path: '/pinia',
+    name: 'Pinia',
+    component: () => import(/* webpackChunkName: "pinia" */'../views/pinia/BasicDemo.vue')
   }
 ]
 
